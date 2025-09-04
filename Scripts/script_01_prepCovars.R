@@ -128,16 +128,6 @@ class(r)  # "list"
 # Raster names
 (r_names <- sapply(r, names))
 
-# Hopefully this is fixed soon, but as of writing (Aug 2025), the name of MODIS-derived datasets doesn't come through.  Add those manually.
-# https://github.com/jmerkle1/MerkleLabGIS/issues/6
-toSub <- which(grepl("MOD", covars$filename))
-
-for (i in toSub) {
-  names(r[[i]]) <- gsub(".tif", "", covars$filename[i])
-}
-(r_names <- sapply(r, names))
-
-
 # Set the DEM as the master raster all others should match
 plot(r[[which(r_names == "DEM_100m")]],
      main = "DEM - original CRS")
